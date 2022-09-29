@@ -4,7 +4,8 @@ getgenv().settings = {
 
     infjump = false,
     speed = false,
-    gravity = false
+    gravity = false,
+    jumppower = false
 
 }
 local settings = getgenv().settings
@@ -50,12 +51,30 @@ player.Chatted:Connect(function(message)
     elseif message == gravitycmd then
         settings.gravity = true
         if settings.gravity == true then
-            player.Character.Humanoid.gravity = 0.000000000001
+            workspace.Gravity = 0.000000000001
         end
     end
     while wait() do
         if settings.gravity == false then
-            player.Character.Humanoid.gravity = 150
+            workspace.Gravity = 150
         end
     end
 end)
+local nojumppower = ";jumppower false"
+local jumppowercmd = ";jumppower"
+
+player.Chatted:Connect(function(message)
+    if message == nojumppower then
+        settings.jumppower = false
+    elseif message == jumppowercmd then
+        settings.jumppower = true
+        player.Character.Humanoid.JumpHeight = 65
+    end
+    while wait() do
+        if settings.jumppower == false then
+            player.Character.Humanoid.JumpHeight = 5.19
+        end
+    end
+
+end)
+
