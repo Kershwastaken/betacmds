@@ -1,3 +1,9 @@
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Beta Admin",
+    Text = "hello! welcome to beta admin, please join our discord server for a list of cmds, support, and to report bugs!",
+    Duration = 10
+})
+
 local player = game.Players.LocalPlayer
 
 getgenv().settings = {
