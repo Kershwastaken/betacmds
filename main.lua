@@ -11,7 +11,8 @@ getgenv().settings = {
     infjump = false,
     speed = false,
     gravity = false,
-    jumppower = false
+    jumppower = false,
+    tpwalk = false
 
 }
 local settings = getgenv().settings
@@ -101,3 +102,38 @@ player.Chatted:Connect(function(message)
     end
 end)
 
+local tpwalkcmd = ";tpwalk"
+local notptalk = ";tpwalk false"
+
+player.Chatted:Connect(function(message)
+    if message == notptalk then
+        settings.tpwalk = false
+    elseif message == tpwalkcmd then
+        local Speed = 5
+
+        settings.tpwalk = true
+
+        local You = game.Players.LocalPlayer.Name
+        local UIS = game:GetService("UserInputService")
+
+        while settings.tpwalk == true do
+            if UIS:IsKeyDown(Enum.KeyCode.W) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, -Speed)
+            end
+            if UIS:IsKeyDown(Enum.KeyCode.A) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(-Speed, 0, 0)
+            end
+            if UIS:IsKeyDown(Enum.KeyCode.S) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, Speed)
+            end
+            if UIS:IsKeyDown(Enum.KeyCode.D) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(Speed, 0, 0)
+            end
+            wait()
+        end
+    end
+end)
