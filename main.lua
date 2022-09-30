@@ -1,9 +1,8 @@
 game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "Kershy Admin",
-    Text = "hello! welcome to Kershy Admin, please join our discord server for a list of cmds, support, and to report bugs! ( invite has been copied )",
+    Text = "hello! welcome to Kershy Admin, please join our discord server for a list of cmds, support, and to report bugs! ( type ;DC to copy invite! )",
     Duration = 10
 })
-setclipboard("https://discord.gg/uq2u9fJWfF")
 
 local player = game.Players.LocalPlayer
 
@@ -91,6 +90,14 @@ player.Chatted:Connect(function(message)
     if message == nameprotectcmd then
         player.Name = "Player"
         player.DisplayName = "player"
+    end
+end)
+
+local discordcmd = ";DC"
+
+player.Chatted:Connect(function(message)
+    if message == discordcmd then
+        setclipboard("https://discord.gg/uq2u9fJWfF")
     end
 end)
 
