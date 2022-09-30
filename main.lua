@@ -137,3 +137,20 @@ player.Chatted:Connect(function(message)
         end
     end
 end)
+
+player.Chatted:Connect(function(message)
+
+    local Arguments = message:split(" ")
+
+    if Arguments[1]:lower() == ";tp" then
+        if Arguments[2] then
+            for i, v in pairs(player.Parent:GetChildren()) do
+
+                if Arguments[2]:lower() == v.name then
+                    player.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+                end
+            end
+        end
+    end
+end)
+
