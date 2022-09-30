@@ -1,8 +1,9 @@
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "Beta Admin",
-    Text = "hello! welcome to beta admin, please join our discord server for a list of cmds, support, and to report bugs!",
+    Title = "Kershy Admin",
+    Text = "hello! welcome to Kershy Admin, please join our discord server for a list of cmds, support, and to report bugs! ( invite has been copied )",
     Duration = 10
 })
+setclipboard("https://discord.gg/uq2u9fJWfF")
 
 local player = game.Players.LocalPlayer
 
