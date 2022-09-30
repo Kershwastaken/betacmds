@@ -85,3 +85,12 @@ player.Chatted:Connect(function(message)
 
 end)
 
+local nameprotectcmd = ";nameprotect"
+
+player.Chatted:Connect(function(message)
+    if message == nameprotectcmd then
+        player.Name = "Player"
+        player.DisplayName = "player"
+    end
+end)
+
