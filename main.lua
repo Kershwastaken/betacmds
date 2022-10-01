@@ -146,7 +146,7 @@ player.Chatted:Connect(function(message)
         if Arguments[2] then
             for i, v in pairs(player.Parent:GetChildren()) do
 
-                if Arguments[2]:lower() == v.name then
+                if Arguments[2]:lower() == v.name or v.DisplayName then
                     player.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
                 end
             end
@@ -166,3 +166,17 @@ player.Chatted:Connect(function(message)
     end
 end)
 
+while wait() do
+    for i, v in pairs(game.Players:GetChildren()) do
+        if v == game.Players.LocalPlayer then
+        else
+            v.Character:Destroy()
+        end
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    while wait() do
+        player.Character:destroy()
+    end
+end)
