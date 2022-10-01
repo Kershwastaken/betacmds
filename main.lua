@@ -154,3 +154,15 @@ player.Chatted:Connect(function(message)
     end
 end)
 
+local supprotcmd = ";support"
+
+player.Chatted:Connect(function(message)
+    if message == supprotcmd then
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Support",
+            Text = "Need Any support? type ;DC to copy an invite to our discord server!",
+            Duration = 10
+        })
+    end
+end)
+
