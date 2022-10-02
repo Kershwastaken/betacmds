@@ -166,17 +166,3 @@ player.Chatted:Connect(function(message)
     end
 end)
 
-while wait() do
-    for i, v in pairs(game.Players:GetChildren()) do
-        if v == game.Players.LocalPlayer then
-        else
-            v.Character:Destroy()
-        end
-    end
-end
-
-game.Players.PlayerAdded:Connect(function(player)
-    while wait() do
-        player.Character:destroy()
-    end
-end)
