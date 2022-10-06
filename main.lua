@@ -1,11 +1,9 @@
+local settingsfile = "adminsettings.txt"
 local player = game.Players.LocalPlayer
 local HttpService = game:GetService("HttpService")
 
-local json = HttpService:JSONEncode(settings)
-local settingsfile = "adminsettings.txt"
-
 if isfile(settingsfile) then
-  getgenv().settings = game:GetService("HttpService"):JSONDecode(settingsfile)
+    getgenv().settings = HttpService:JSONDecode(readfile(settingsfile))
 else
     getgenv().settings = {
         infjump = false,
@@ -13,13 +11,19 @@ else
         gravity = false,
         jumppower = false,
         tpwalk = false
-    
+
     }
 end
 
-
-
 local settings = getgenv().settings
+
+local json = HttpService:JSONEncode(settings)
+
+local function save()
+    local json = HttpService:JSONEncode(settings)
+    writefile(settingsfile, json)
+end
+
 local notinfjump = ";infjump false"
 game.Players.LocalPlayer.Chatted:Connect(function(message)
     if message == notinfjump then
@@ -170,84 +174,66 @@ player.Chatted:Connect(function(message)
     end
 end)
 
-
-
 player.Chatted:Connect(function(message)
-    
+
 end)
-
-
 
 local savecmd = ";save"
 
 player.Chatted:Connect(function(message)
     if savecmd == ";save" then
-        
-        writefile(settingsfile, json)
+
+        save()
     end
 end)
 
-if settings.infjump == true then repeat task.wait()
-
+while wait() do
 
     game:GetService("UserInputService").JumpRequest:connect(function()
         if settings.infjump then
             game:GetService "Players".LocalPlayer.Character:FindFirstChildOfClass 'Humanoid':ChangeState("Jumping")
-        
+
         end
     end)
-until settings.infjump == false
-end 
 
-if settings.gravity then
-    repeat task.wait()
     if settings.gravity == true then
         workspace.Gravity = 0.000000000001
     end
-until settings.gravity == false
-end
 
+    if settings.gravity then
 
-if settings.jumppower == true then
-    repeat task.wait()
-    player.Character.Humanoid.JumpHeight = 65
-    until settings.jumppower == false
-end
+        player.Character.Humanoid.JumpHeight = 65
 
-if settings.speed then
-    repeat task.wait()
+    end
+
+    if settings.speed then
         player.Character.Humanoid.WalkSpeed = 50
-    until settings.speed == false
-end
+    end
 
-if settings.tpwalk == true then repeat task.wait()
+    task.wait()
     local Speed = 5
 
-        settings.tpwalk = true
+    local You = game.Players.LocalPlayer.Name
+    local UIS = game:GetService("UserInputService")
 
-        local You = game.Players.LocalPlayer.Name
-        local UIS = game:GetService("UserInputService")
-
-        while settings.tpwalk == true do
-            if UIS:IsKeyDown(Enum.KeyCode.W) then
-                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
-                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, -Speed)
-            end
-            if UIS:IsKeyDown(Enum.KeyCode.A) then
-                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
-                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(-Speed, 0, 0)
-            end
-            if UIS:IsKeyDown(Enum.KeyCode.S) then
-                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
-                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, Speed)
-            end
-            if UIS:IsKeyDown(Enum.KeyCode.D) then
-                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
-                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(Speed, 0, 0)
-            end
-            wait()
+    while settings.tpwalk == true do
+        if UIS:IsKeyDown(Enum.KeyCode.W) then
+            game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, -Speed)
         end
-until settings.tpwalk == false
-end
-    
+        if UIS:IsKeyDown(Enum.KeyCode.A) then
+            game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(-Speed, 0, 0)
+        end
+        if UIS:IsKeyDown(Enum.KeyCode.S) then
+            game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, Speed)
+        end
+        if UIS:IsKeyDown(Enum.KeyCode.D) then
+            game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(Speed, 0, 0)
+        end
+        wait()
+    end
 
+end
