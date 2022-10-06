@@ -1,20 +1,24 @@
-game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "Kershy Admin",
-    Text = "hello! welcome to Kershy Admin, please join our discord server for a list of cmds, support, and to report bugs! ( type ;DC to copy invite! )",
-    Duration = 10
-})
-
 local player = game.Players.LocalPlayer
+local HttpService = game:GetService("HttpService")
 
-getgenv().settings = {
+local json = HttpService:JSONEncode(settings)
+local settingsfile = "adminsettings.txt"
 
-    infjump = false,
-    speed = false,
-    gravity = false,
-    jumppower = false,
-    tpwalk = false
+if isfile(settingsfile) then
+  getgenv().settings = game:GetService("HttpService"):JSONDecode(settingsfile)
+else
+    getgenv().settings = {
+        infjump = false,
+        speed = false,
+        gravity = false,
+        jumppower = false,
+        tpwalk = false
+    
+    }
+end
 
-}
+
+
 local settings = getgenv().settings
 local notinfjump = ";infjump false"
 game.Players.LocalPlayer.Chatted:Connect(function(message)
@@ -165,4 +169,85 @@ player.Chatted:Connect(function(message)
         })
     end
 end)
+
+
+
+player.Chatted:Connect(function(message)
+    
+end)
+
+
+
+local savecmd = ";save"
+
+player.Chatted:Connect(function(message)
+    if savecmd == ";save" then
+        
+        writefile(settingsfile, json)
+    end
+end)
+
+if settings.infjump == true then repeat task.wait()
+
+
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if settings.infjump then
+            game:GetService "Players".LocalPlayer.Character:FindFirstChildOfClass 'Humanoid':ChangeState("Jumping")
+        
+        end
+    end)
+until settings.infjump == false
+end 
+
+if settings.gravity then
+    repeat task.wait()
+    if settings.gravity == true then
+        workspace.Gravity = 0.000000000001
+    end
+until settings.gravity == false
+end
+
+
+if settings.jumppower == true then
+    repeat task.wait()
+    player.Character.Humanoid.JumpHeight = 65
+    until settings.jumppower == false
+end
+
+if settings.speed then
+    repeat task.wait()
+        player.Character.Humanoid.WalkSpeed = 50
+    until settings.speed == false
+end
+
+if settings.tpwalk == true then repeat task.wait()
+    local Speed = 5
+
+        settings.tpwalk = true
+
+        local You = game.Players.LocalPlayer.Name
+        local UIS = game:GetService("UserInputService")
+
+        while settings.tpwalk == true do
+            if UIS:IsKeyDown(Enum.KeyCode.W) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, -Speed)
+            end
+            if UIS:IsKeyDown(Enum.KeyCode.A) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(-Speed, 0, 0)
+            end
+            if UIS:IsKeyDown(Enum.KeyCode.S) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0, 0, Speed)
+            end
+            if UIS:IsKeyDown(Enum.KeyCode.D) then
+                game:GetService("Workspace")[You].HumanoidRootPart.CFrame =
+                    game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(Speed, 0, 0)
+            end
+            wait()
+        end
+until settings.tpwalk == false
+end
+    
 
