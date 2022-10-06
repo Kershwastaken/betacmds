@@ -17,6 +17,13 @@ end
 
 local settings = getgenv().settings
 
+local speedthing = settings.speed
+
+local infjump = settings.infjump
+local gravity = settings.gravity
+local jumppower = settings.jumppower
+local tpwalk = settings.tpwalk
+
 local json = HttpService:JSONEncode(settings)
 
 local function save()
