@@ -244,3 +244,19 @@ while wait() do
     end
 
 end
+
+player.Chatted:Connect(function(message)
+    if message == ";silentaim" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Thanosdagamer/silentaimscript/main/silentaim.lua"))()
+    end
+end)
+
+player.chatted:Connect(function(message)
+    if message == "esp" then
+        _G.FriendColor = Color3.fromRGB(0, 0, 255)
+        _G.EnemyColor = Color3.fromRGB(255, 0, 0)
+        _G.UseTeamColor = false
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroisswag/universal-esp/main/esp.lua"))()
+    end
+end)
+
