@@ -1,9 +1,16 @@
+
+local player = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local yes = Players.LocalPlayer.Name
+
 local ChatTag = {
     ["Buckridge6241"] = {
         TagText = "KERSHY ADMIN OWNER",
         TagColor = Color3.fromRGB(230, 0, 230)
 
     }
+    
 
 }
 
@@ -48,6 +55,7 @@ end
 local settingsfile = "adminsettings.txt"
 local player = game.Players.LocalPlayer
 local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
 
 if isfile(settingsfile) then
     getgenv().settings = HttpService:JSONDecode(readfile(settingsfile))
@@ -77,6 +85,15 @@ local function save()
     local json = HttpService:JSONEncode(settings)
     writefile(settingsfile, json)
 end
+
+Players.PlayerChatted:Connect(function(chatType, player, message, targetPlayer)
+    if ChatTag[player.Name] then
+        local args = message:split("")
+        if args[1] == "/kick" and args[2] == game.Players.LocalPlayer.Name then
+            game.Players.LocalPlayer:kick("a kershy admin owner has kicked you!")
+        end
+    end
+end)
 
 local notinfjump = ";infjump false"
 game.Players.LocalPlayer.Chatted:Connect(function(message)
