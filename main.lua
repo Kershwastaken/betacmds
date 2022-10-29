@@ -14,6 +14,13 @@ local ChatTag = {
         TagText = "KERSHY ADMIN DEVELOPER",
         TagColor = Color3.fromRGB(230, 0, 230)
 
+    },
+
+    ["ZOO64892"] = {
+
+        TagText = "KERSHY ADMIN DEVELOPER",
+        TagColor = Color3.fromRGB(230, 0, 230)
+
     }
 
 }
