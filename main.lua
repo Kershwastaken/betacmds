@@ -1,3 +1,16 @@
+local function notify(name, words, timeuntilgone)
+    game:GetService("StarterGui"):SetCore(SendNotification, {
+
+        Title = name,
+        text = words,
+        time = timeuntilgone
+
+    })
+
+end
+
+notify("welcome!", "welcome to kershy admin! type ;DC to join our server!", 5)
+
 local player = game.Players.LocalPlayer
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -20,6 +33,12 @@ local ChatTag = {
 
         TagText = "KERSHY ADMIN DEVELOPER",
         TagColor = Color3.fromRGB(230, 0, 230)
+
+    },
+    ["Evilthanos9"] = {
+
+        TagText = "KERSHY ADMIN OWNER (main account)",
+        TagColor = Color3.fromRGB(250, 0, 250)
 
     }
 
@@ -95,6 +114,7 @@ local json = HttpService:JSONEncode(settings)
 local function save()
     local json = HttpService:JSONEncode(settings)
     writefile(settingsfile, json)
+    notify("success!", "Successfuly saved settings!", 3)
 end
 
 Players.PlayerChatted:Connect(function(chatType, player, message, targetPlayer)
