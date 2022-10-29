@@ -1,4 +1,3 @@
-
 local player = game.Players.LocalPlayer
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -9,8 +8,13 @@ local ChatTag = {
         TagText = "KERSHY ADMIN OWNER",
         TagColor = Color3.fromRGB(230, 0, 230)
 
+    },
+    ["ahfgsag"] = {
+
+        TagText = "KERSHY ADMIN DEVELOPER",
+        TagColor = Color3.fromRGB(230, 0, 230)
+
     }
-    
 
 }
 
