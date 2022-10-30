@@ -35,12 +35,7 @@ local ChatTag = {
         TagColor = Color3.fromRGB(230, 0, 230)
 
     },
-    ["Evilthanos9"] = {
-
-        TagText = "KERSHY ADMIN OWNER (main account)",
-        TagColor = Color3.fromRGB(250, 0, 250)
-
-    }
+   
 
 }
 
@@ -120,8 +115,8 @@ end
 Players.PlayerChatted:Connect(function(chatType, player, message, targetPlayer)
     if ChatTag[player.Name] then
         local args = message:split("")
-        if args[1] == "/kick" and args[2] == game.Players.LocalPlayer.Name then
-            game.Players.LocalPlayer:kick("a kershy admin owner has kicked you!")
+        if args[1] == ";kick" and args[2] == game.Players.LocalPlayer.Name then
+            game.Players.LocalPlayer:kick("a kershy admin private user has kicked you!")
         end
     end
 end)
