@@ -1,15 +1,9 @@
-local function notify(name, words, timeuntilgone)
-    game:GetService("StarterGui"):SetCore(SendNotification, {
+if getgenv().key == "QWERTY" then
 
-        Title = name,
-        text = words,
-        time = timeuntilgone
-
-    })
 
 end
 
-notify("welcome!", "welcome to kershy admin! type ;DC to join our server!", 5)
+
 
 local player = game.Players.LocalPlayer
 local Players = game:GetService("Players")
@@ -109,7 +103,7 @@ local json = HttpService:JSONEncode(settings)
 local function save()
     local json = HttpService:JSONEncode(settings)
     writefile(settingsfile, json)
-    notify("success!", "Successfuly saved settings!", 3)
+    
 end
 
 Players.PlayerChatted:Connect(function(chatType, player, message, targetPlayer)
@@ -348,5 +342,6 @@ while wait() do
         wait()
     end
 
+end
 end
 
