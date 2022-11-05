@@ -1,4 +1,4 @@
-if getgenv().key == "QWERTY" then
+if getenv().key == "QWERTY" then
 
     local player = game.Players.LocalPlayer
     local Players = game:GetService("Players")
