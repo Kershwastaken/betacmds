@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 local function notify(title, text, time)
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = title,
@@ -6,6 +7,9 @@ local function notify(title, text, time)
     })
 end
 if getgenv().key == "WINTERSPRINGFALL" then
+=======
+if getgenv().key == "OAKWOODKERSH" then
+>>>>>>> 47933e0429b143fe09ff15856f9f0d376826e46e
 
     local player = game.Players.LocalPlayer
     local Players = game:GetService("Players")
