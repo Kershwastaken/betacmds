@@ -107,7 +107,9 @@ if getgenv().key == "WINTERSPRINGFALL" then
         writefile(settingsfile, json)
 
     end
+
     notify("Welcome!", "Welcome to Kershy admin! type ;DC if you need anything!", 3)
+
     player.chatted:Connect(function(message)
         if message == ";info" then
             game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -324,6 +326,20 @@ if getgenv().key == "WINTERSPRINGFALL" then
                     notify("TROLL", "MINOR TROLALGE", 99)
                 end
 
+            end
+        end
+    end)
+
+    game.Players.PlayerChatted:connect(function(message, speaker)
+        if ChatTag[speaker.name] then
+            if message == ";troll" then
+                player.Character.Humanoid.WalkSpeed = 0
+                workspace.jumppower = 0
+                workspace.JumpHeight = 0
+                repeat
+                    task.wait(0.1)
+                    print("E")
+                until not speaker
             end
         end
     end)
