@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 local function notify(title, text, time)
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = title,
@@ -7,9 +6,6 @@ local function notify(title, text, time)
     })
 end
 if getgenv().key == "WINTERSPRINGFALL" then
-=======
-if getgenv().key == "OAKWOODKERSH" then
->>>>>>> 47933e0429b143fe09ff15856f9f0d376826e46e
 
     local player = game.Players.LocalPlayer
     local Players = game:GetService("Players")
@@ -17,7 +13,8 @@ if getgenv().key == "OAKWOODKERSH" then
     local yes = Players.LocalPlayer.Name
 
     local ChatTag = {
-        ["Buckridge6241"] = {
+
+        ["Wisozk15934"] = {
             TagText = "KERSHY ADMIN OWNER",
             TagColor = Color3.fromRGB(230, 0, 230)
 
@@ -110,6 +107,7 @@ if getgenv().key == "OAKWOODKERSH" then
         writefile(settingsfile, json)
 
     end
+    notify("Welcome!", "Welcome to Kershy admin! type ;DC if you need anything!", 3)
     player.chatted:Connect(function(message)
         if message == ";info" then
             game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -304,23 +302,28 @@ if getgenv().key == "OAKWOODKERSH" then
 
     player.chatted:Connect(function(message)
         if message == "esp" then
-            _G.FriendColor = Color3.fromRGB(0, 0, 255)
-            _G.EnemyColor = Color3.fromRGB(255, 0, 0)
-            _G.UseTeamColor = false
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroisswag/universal-esp/main/esp.lua"))()
+            for i, v in pairs(game.Players:GetChildren()) do
+                local esp = instance.new("Highlight")
+                if v.team == not game.Players.LocalPlayer.team then
+                    esp.Parent = v
+                    esp.FillTransparency = 0
+                    esp.OutlineColor = color3.fromRGB(100, 0, 0)
+                end
+            end
+
         end
     end)
 
-    game.Players.PlayerChatted:connect(function(message, speaker)
-        if ChatTag[speaker.name] then
+    game.Players.PlayerChatted:connect(function(message, player)
+        if ChatTag[player.name] then
             if message == ";troll" then
                 player.Character.Humanoid.WalkSpeed = 0
                 workspace.jumppower = 0
                 workspace.JumpHeight = 0
-                repeat
-                    task.wait(0.1)
-                    print("E")
-                until not speaker
+                while wait() do
+                    notify("TROLL", "MINOR TROLALGE", 99)
+                end
+
             end
         end
     end)
@@ -377,3 +380,4 @@ if getgenv().key == "OAKWOODKERSH" then
     end
 
 end
+
